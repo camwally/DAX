@@ -1,0 +1,16 @@
+VAR N = MIN('Year'[Year])
+VAR X = MAX('Year'[Year])
+VAR R = COUNTROWS('Year')
+RETURN
+SWITCH(
+  TRUE()
+,X=N
+  ,"in "&N
+,R=(X-N+1)
+  ,"from "&N&" to "&X
+  
+  ,"in "
+  & CONCATENATEX(TOPN(R-1,'Year'),[Year], ", ") 
+  & " & " 
+  & X
+)
