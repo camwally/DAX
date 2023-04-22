@@ -1,0 +1,21 @@
+Misc URL | URL Root = https://blah123.crm9.dynamics.com
+
+Misc URL | App Id = "Some-GUID-Value-You-See-In-Your-Power-Apps-URL"
+
+Misc URL | URL App =
+[Misc URL | URL Root]
+& "/main.aspx?"
+& "appid=" & [Misc URL | App Id]
+
+Misc URL Ld | URL of Account =
+VAR Etn = "account" //The table
+VAR Ide = SELECTEDVALUE('Account'[Account GUID])
+RETURN
+IF(
+    NOT ISBLANK(Ide),
+    [Misc URL | URL App]
+    &"&forceUCI=1"
+    &"&pagetype=entityrecord"
+    &"&etn="&Etn
+    &"&id="&Ide
+)  
